@@ -10,12 +10,12 @@ export default function Middleware(request: NextRequest) {
   response.headers.set("custome-header", "custome-value"); //add custome-header value
 
   return response;
-  //   if (request.nextUrl.pathname === "/profile")
+  //   if (request.nextUrl.pathname === "/profile") //conditional statemnet for middleware
   //     //this is using conditional statement
   //     return NextResponse.redirect(new URL("/about", request.url));
   //   return NextResponse.redirect(new URL("/", request.url));
 }
 
 // export const config = {
-//   matcher: "/profile",
+//   matcher: "/profile", //matcher for middleware
 // };

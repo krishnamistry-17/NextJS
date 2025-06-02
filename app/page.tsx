@@ -24,7 +24,7 @@ export default function serverActions() {
           className="w-full border border-gray-300 rounded-md px-4 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-blue-400"
           placeholder="Enter name..."
         />
-        <div className="w-full bg-blue-500 hover:bg-blue-600 text-white text-center font-medium py-2 rounded-md transition duration-200">
+        <div className="w-full bg-blue-500 hover:bg-blue-600 text-white text-center font-medium py-2 rounded-md ">
           <Button />
         </div>
       </form>

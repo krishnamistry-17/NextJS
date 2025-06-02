@@ -9,7 +9,7 @@ async function fetchUser(id: string) {
   return user;
 }
 export default async function UsersPage({
-  //in ts params write this
+  //in ts params write this for id find
   params,
 }: {
   params: Promise<{ userId: string }>;
@@ -20,8 +20,15 @@ export default async function UsersPage({
     notFound();
   }
   return (
-    <div>
-      <h1>{user.name}</h1>
+    <div className="text-center pt-[25px] justify-start">
+      <h1>
+        <strong>Id:</strong>
+        {user.id}
+      </h1>
+      <h1>
+        <strong>Name:</strong>
+        {user.name}
+      </h1>
       <p>
         <strong>Email:</strong> {user.email}
       </p>
