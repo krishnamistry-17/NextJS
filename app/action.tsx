@@ -4,7 +4,7 @@ export async function myServerAction(data: string) {
   console.log("server action recieved :", data);
   return { message: `Processed ${data}` };
 }
-
+//prevstate-Formstate
 async function createPost(prevState: any, formData: FormData) {
   const title = formData.get("title");
   const body = formData.get("body");

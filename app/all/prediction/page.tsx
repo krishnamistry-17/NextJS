@@ -8,7 +8,7 @@ export default function NameData() {
   const { push } = useRouter();
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-    push(`/prediction/${inputval}`);
+    push(`/all/prediction/${inputval}`);
   };
 
   return (

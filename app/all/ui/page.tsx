@@ -1,7 +1,7 @@
 "use client";
 
 import { useActionState } from "react";
-import createPost from "../action";
+import createPost from "../../action";
 
 const initialState = {
   message: "",
