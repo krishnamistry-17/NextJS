@@ -1,15 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Link from "next/link";
-import {
-  ClerkProvider,
-  SignInButton,
-  SignUpButton,
-  SignOutButton,
-  SignedIn,
-  SignedOut,
-} from "@clerk/nextjs";
+import { ClerkProvider } from "@clerk/nextjs";
+import Navbar from "./navbar/page";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -37,25 +30,7 @@ export default function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
-          <div className=" text-2xl pl-[15px] flex gap-7 justify-end border-b border-[var(--forground)]/10">
-            <Link href={"/"}>Home</Link>
-            <Link href={"/about"}>About</Link>
-            <Link href={"/contact"}>Contact</Link>
-            <Link href={"/all"}>All</Link>
-            <SignedOut>
-              <SignInButton mode="modal">
-                <button className="">SignIn</button>
-              </SignInButton>
-              <SignUpButton mode="modal">
-                <button>SignUp</button>
-              </SignUpButton>
-            </SignedOut>
-
-            <SignedIn>
-              <Link href={"/user-profile"}>UserProfile</Link>
-              <SignOutButton />
-            </SignedIn>
-          </div>
+          <Navbar />
           {children}
         </body>
       </html>

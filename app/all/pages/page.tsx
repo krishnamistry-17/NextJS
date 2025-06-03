@@ -1,39 +1,41 @@
-"use client";
-import { useEffect, useState } from "react";
+import React from "react";
 
-//getstaticprops , getserversideporps
-
-export default function Page() {
-  const [data, setData] = useState(null);
-  console.log("data :", data);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await fetch(
-        "https://jsonplaceholder.typicode.com/users"
-      );
-      if (!response.ok) {
-        throw new Error(`HTTP not works,${response.status}`);
-      }
-      const result = await response.json();
-      setData(result);
-    };
-    fetchData().catch((e) => {
-      console.log("An error fetching data", e);
-    });
-  });
-
-  return <div>Your data</div>;
+interface Post {
+  id: number;
+  name: string;
+  username: string;
+  email: string;
 }
 
-//using swr to fetch data on client
-// "use client";
-// import useSWR from "swr";
-// export default function Page() {
-//   const { data, error, isLoading } = useSWR();
+export default async function PostPerPage() {
+  const res = await fetch("https://jsonplaceholder.typicode.com/users");
+  const posts: Post[] = await res.json();
 
-//   if (error) return <p>error</p>;
-//   if (isLoading) return <p>Loading</p>;
-
-//   return <p>Your data{data}</p>;
-// }
+  return (
+    <div>
+      <h1 className="text-black font-bold text-xl pl-[10px]">
+        Posts Using Rendering & map
+      </h1>
+      {posts.map((post) => (
+        <div key={post.id} className="pl-[10px]">
+          <p className="pt-[8px]">
+            <strong>Id:</strong>
+            {post.id}
+          </p>
+          <p>
+            <strong>Name:</strong>
+            {post.name}
+          </p>
+          <p>
+            <strong>UserName:</strong>
+            {post.username}
+          </p>
+          <p>
+            <strong>Email:</strong>
+            {post.email}
+          </p>
+        </div>
+      ))}
+    </div>
+  );
+}
