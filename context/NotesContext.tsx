@@ -12,6 +12,7 @@ export interface Note {
 interface NotesContextType {
   notes: Note[];
   updateNote: (note: Note) => void;
+  addNote: (note: Note) => void;
   setNotes: (notes: Note[]) => void;
 }
 
@@ -37,8 +38,12 @@ export const NotesProvider: React.FC<{ children: React.ReactNode }> = ({
     );
   };
 
+  const addNote = (newNote: Note) => {
+    setNotes((prev) => [...prev, newNote]);
+  };
+
   return (
-    <NotesContext.Provider value={{ notes, updateNote, setNotes }}>
+    <NotesContext.Provider value={{ notes, updateNote, addNote, setNotes }}>
       {children}
     </NotesContext.Provider>
   );

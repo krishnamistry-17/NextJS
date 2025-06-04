@@ -25,11 +25,6 @@ export default function Notes() {
     document.body.style.overflow = isModalOpen ? "hidden" : "show";
   }, [isModalOpen]);
 
-  const handleDelete = (id: number) => {
-    setDeleteId(id);
-    setIsModalOpen(true);
-  };
-
   const handleConfirmDelete = () => {
     if (deleteId !== null) {
       setNotes((prev) => prev.filter((note) => note.id !== deleteId));
@@ -41,6 +36,15 @@ export default function Notes() {
   const handleCancelDelete = () => {
     setDeleteId(null);
     setIsModalOpen(false);
+  };
+
+  const handleDelete = (id: number) => {
+    setDeleteId(id);
+    setIsModalOpen(true);
+  };
+
+  const handleAdd = () => {
+    router.push("/notes/add");
   };
 
   const handleEdit = (id: number) => {
@@ -66,8 +70,15 @@ export default function Notes() {
               <th className="text-sm font-medium text-gray-700 px-4 py-2 border">
                 Email
               </th>
-              <th className="text-sm font-medium text-gray-700 px-4 py-2 border">
-                Actions
+              <th className="border">
+                <div className="flex justify-center">
+                  <button
+                    onClick={handleAdd}
+                    className="px-3 py-1  text-xs text-white bg-green-500 hover:bg-green-700 rounded"
+                  >
+                    Add
+                  </button>
+                </div>
               </th>
             </tr>
           </thead>
