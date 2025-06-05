@@ -41,12 +41,19 @@ export const NotesProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   const viewNotes = (viewNote: Note) => {
-    console.log("Updating note with ID:", viewNote.id);
-    setNotes((prev) =>
-      prev.map((note) =>
-        note.id === viewNote.id ? { ...note, ...viewNote } : note
-      )
-    );
+    console.log("Viewing note with ID:", viewNote.id);
+    setNotes((prev) => {
+      const existing = prev.find((note) => note.id === viewNote.id);
+      if (existing) {
+        // Update
+        return prev.map((note) =>
+          note.id === viewNote.id ? { ...note, ...viewNote } : note
+        );
+      } else {
+        // Add
+        return [...prev, viewNote];
+      }
+    });
   };
 
   const searchNotes = (searchNote: Note) => {

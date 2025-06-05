@@ -4,12 +4,12 @@ import { useNotesContext } from "@/context/NotesContext";
 import { useParams, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 
-export default function viewPage() {
+export default function ViewPage() {
   const router = useRouter();
   const { id } = useParams();
-  const { notes, viewNotes } = useNotesContext();
+  const { notes } = useNotesContext();
 
-  const note = notes.find((n) => n.id === Number(id));
+  const note = notes.find((n) => String(n.id) === String(id));
 
   const [formData, setFormData] = useState({
     name: "",
@@ -20,18 +20,18 @@ export default function viewPage() {
   useEffect(() => {
     if (note) {
       setFormData({
-        name: note.name,
-        username: note.username,
-        email: note.email,
+        name: note.name || "",
+        username: note.username || "",
+        email: note.email || "",
       });
     }
   }, [note]);
 
+  if (!note && notes.length === 0) return <div>Loading...</div>;
   if (!note) return <div>Note not found!</div>;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
     router.push("/notes");
   };
 
@@ -73,7 +73,7 @@ export default function viewPage() {
               }
               className="border border-black max-w-[250px] p-[10px]"
             />
-            <button className="bg-blue-500 hover:bg-blue-700 text-white roudned-md px-4 py-3">
+            <button className="bg-blue-500 hover:bg-blue-700 text-white rounded-md px-4 py-3">
               Go Back
             </button>
           </div>

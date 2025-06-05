@@ -8,7 +8,8 @@ export default function page() {
   const { id } = useParams();
   const { notes, updateNote } = useNotesContext();
 
-  const note = notes.find((n) => n.id === Number(id));
+  // const note = notes.find((n) => n.id === Number(id));
+  const note = notes.find((n) => String(n.id) === String(id));
   const [formData, setFormData] = useState({
     name: "",
     username: "",

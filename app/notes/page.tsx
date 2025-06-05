@@ -4,7 +4,10 @@ import { useRouter } from "next/navigation";
 import { MdDelete } from "react-icons/md";
 import React, { useEffect, useState } from "react";
 import { useNotesContext } from "@/context/NotesContext";
-
+import { FaFile } from "react-icons/fa";
+import { MdDownloadDone } from "react-icons/md";
+import CsvDownloader from "react-csv-downloader";
+import { MdDownload } from "react-icons/md";
 interface Notes {
   id: number;
   name: string;
@@ -14,8 +17,9 @@ interface Notes {
 
 export default function Notes() {
   const router = useRouter();
-  const { notes, setNotes } = useNotesContext();
 
+  const { notes, setNotes } = useNotesContext();
+  const [isDownloadComplete, setIsDownloadComplete] = useState(false);
   const [deleteId, setDeleteId] = useState<number | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [input, setInput] = useState("");
@@ -57,6 +61,19 @@ export default function Notes() {
   const handleEdit = (id: number) => {
     router.push(`/notes/edit/${id}`);
   };
+  const handleDownload = () => {
+    setTimeout(() => {
+      setIsDownloadComplete(true);
+      setTimeout(() => setIsDownloadComplete(false), 2000);
+    }, 500);
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      console.log("Selected file:", file.name);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gray-100 py-10 px-4">
@@ -90,8 +107,40 @@ export default function Notes() {
                     placeholder="Search Name"
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
-                    className="border border-black p-[5px] font-medium text-[16px] my-1 rounded-sm max-w-[150px]"
+                    className="border border-black p-[5px] font-medium text-[16px] my-1 rounded-sm max-w-[135px]"
                   />
+                  <span>
+                    {isDownloadComplete ? (
+                      <>
+                        <MdDownloadDone
+                          className="w-[35px] h-[35px] cursor-pointer"
+                          title="Downloaded"
+                        />
+                      </>
+                    ) : (
+                      <>
+                        <label
+                          htmlFor="csv-download"
+                          className="cursor-pointer"
+                        >
+                          <MdDownload
+                            className="w-[35px] h-[35px] text-yellow-600 hover:text-yellow-700"
+                            title="Download CSV"
+                            onClick={handleDownload}
+                          />
+                        </label>
+                        <div className="hidden">
+                          <CsvDownloader
+                            id="csv-download"
+                            datas={notes}
+                            filename={`userData_${new Date().toLocaleDateString()}`}
+                            extension=".csv"
+                            text=""
+                          />
+                        </div>
+                      </>
+                    )}
+                  </span>
                 </div>
               </th>
             </tr>
@@ -131,6 +180,18 @@ export default function Notes() {
                     >
                       View
                     </button>
+
+                    <input
+                      type="file"
+                      id="fileUpload"
+                      className="hidden"
+                      onChange={handleFileChange}
+                    />
+
+                    {/* Label triggers the input */}
+                    <label htmlFor="fileUpload" className="cursor-pointer">
+                      <FaFile className="text-2xl text-blue-600 hover:text-blue-800" />
+                    </label>
                   </div>
                 </td>
               </tr>
