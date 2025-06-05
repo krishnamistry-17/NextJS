@@ -17,9 +17,8 @@ export default function Notes() {
   const { notes, setNotes } = useNotesContext();
 
   const [deleteId, setDeleteId] = useState<number | null>(null);
-  console.log("deleteId :", deleteId);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  console.log("isModalOpen :", isModalOpen);
+  const [input, setInput] = useState("");
 
   useEffect(() => {
     document.body.style.overflow = isModalOpen ? "hidden" : "show";
@@ -43,6 +42,14 @@ export default function Notes() {
     setIsModalOpen(true);
   };
 
+  const handleView = (id: number) => {
+    router.push(`/notes/view/${id}`);
+  };
+
+  const searchResult = notes.filter((item) =>
+    item.name.toLowerCase().includes(input.toLocaleLowerCase())
+  );
+
   const handleAdd = () => {
     router.push("/notes/add");
   };
@@ -53,7 +60,7 @@ export default function Notes() {
 
   return (
     <div className="min-h-screen bg-gray-100 py-10 px-4">
-      <div className="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-6">
+      <div className="lg:max-w-4xl max-w-3xl mx-auto bg-white shadow-md rounded-lg p-6 overflow-x-auto">
         <h1 className="text-xl font-semibold mb-4 text-center">User Notes</h1>
         <table className="w-full table-auto border border-gray-300">
           <thead className="bg-gray-200">
@@ -71,19 +78,26 @@ export default function Notes() {
                 Email
               </th>
               <th className="border">
-                <div className="flex justify-center">
+                <div className="flex justify-center gap-2">
                   <button
                     onClick={handleAdd}
-                    className="px-3 py-1  text-xs text-white bg-green-500 hover:bg-green-700 rounded"
+                    className="px-3 py-1 my-1 max-w-[100px]  text-xs text-white bg-green-500 hover:bg-green-700 rounded"
                   >
                     Add
                   </button>
+                  <input
+                    type="search"
+                    placeholder="Search Name"
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    className="border border-black p-[5px] font-medium text-[16px] my-1 rounded-sm max-w-[150px]"
+                  />
                 </div>
               </th>
             </tr>
           </thead>
           <tbody>
-            {notes.map((note) => (
+            {searchResult.map((note) => (
               <tr key={note.id} className="hover:bg-gray-50">
                 <td className="text-sm px-4 py-2 border text-center">
                   {note.id}
@@ -110,6 +124,12 @@ export default function Notes() {
                       className="px-3 py-1 text-xs text-white bg-red-500 hover:bg-red-700 rounded"
                     >
                       Delete
+                    </button>
+                    <button
+                      onClick={() => handleView(note.id)}
+                      className="px-3 py-1 text-xs text-white bg-yellow-600 hover:bg-yellow-400 rounded"
+                    >
+                      View
                     </button>
                   </div>
                 </td>

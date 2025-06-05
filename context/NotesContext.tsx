@@ -14,6 +14,8 @@ interface NotesContextType {
   updateNote: (note: Note) => void;
   addNote: (note: Note) => void;
   setNotes: (notes: Note[]) => void;
+  viewNotes: (notes: Note[]) => void;
+  searchNotes: (notes: Note[]) => void;
 }
 
 const NotesContext = createContext<NotesContextType | undefined>(undefined);
@@ -38,12 +40,31 @@ export const NotesProvider: React.FC<{ children: React.ReactNode }> = ({
     );
   };
 
+  const viewNotes = (viewNote: Note) => {
+    console.log("Updating note with ID:", viewNote.id);
+    setNotes((prev) =>
+      prev.map((note) =>
+        note.id === viewNote.id ? { ...note, ...viewNote } : note
+      )
+    );
+  };
+
+  const searchNotes = (searchNote: Note) => {
+    setNotes((prev) =>
+      prev.map((note) =>
+        note.id === searchNote.id ? { ...note, ...searchNote } : note
+      )
+    );
+  };
+
   const addNote = (newNote: Note) => {
     setNotes((prev) => [...prev, newNote]);
   };
 
   return (
-    <NotesContext.Provider value={{ notes, updateNote, addNote, setNotes }}>
+    <NotesContext.Provider
+      value={{ notes, updateNote, addNote, setNotes, viewNotes, searchNotes }}
+    >
       {children}
     </NotesContext.Provider>
   );
