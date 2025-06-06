@@ -34,8 +34,7 @@ export default function Contact() {
               onChange={(e) =>
                 setFormData({ ...formData, lname: e.target.value })
               }
-              className="border bor
-              der-black p-[10px] max-w-[250px] rounded-sm"
+              className="border border-black p-[10px] max-w-[250px] rounded-sm"
             />
             <input
               type="email"
