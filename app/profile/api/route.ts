@@ -7,7 +7,7 @@ export async function GET(request: NextRequest) {
   const headerList = headers();
 
   (await cookies()).set("resultperPage", "20");
-  const theme = request.cookies.get("theme");
+  const theme = request.cookies.get("theme"); //set cookies name-theme
 
   console.log("theme :", theme); //cookies
   console.log((await cookies()).get("resultperPage")); //cookies

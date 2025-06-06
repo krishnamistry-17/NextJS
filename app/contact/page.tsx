@@ -66,7 +66,7 @@ export default function Contact() {
 }
 
 {
-  /*This is made client-server component of example using button */
+  /*This is made client-server component of example using button->below code is server component & button is from client component */
 }
 // const response = await fetch("https://jsonplaceholder.typicode.com/posts");
 // const posts = await response.json();
