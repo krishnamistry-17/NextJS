@@ -18,117 +18,122 @@ export default function Navbar() {
   const toggleMenu = () => setIsMenuOpen((prev) => !prev);
 
   return (
-    <nav
-      className="w-full border-b border-gray-200 bg-white shadow-sm 
+    <>
+      <nav
+        className="w-full border-b border-gray-200 bg-white shadow-sm 
     px-4 py-3 flex justify-between items-center relative"
-    >
-      {/* Logo */}
-      <Link href="/" className="flex items-center gap-2">
-        <Image
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={38}
-          priority
-        />
-      </Link>
-
-      {/* Desktop Navigation */}
-      <div className="hidden md:flex items-center gap-6 text-sm">
-        <Link href="/" className="hover:text-blue-600">
-          Home
-        </Link>
-        <Link href="/about" className="hover:text-blue-600">
-          About
-        </Link>
-        <Link href="/contact" className="hover:text-blue-600">
-          Contact
-        </Link>
-        <Link href="/all" className="hover:text-blue-600">
-          All
+      >
+        {/* Logo */}
+        <Link href="/" className="flex items-center gap-2">
+          <Image
+            src="/next.svg"
+            alt="Next.js logo"
+            width={100}
+            height={38}
+            priority
+          />
         </Link>
 
-        <SignedOut>
-          <SignInButton mode="modal">
-            <button className="px-4 py-1 rounded border border-black">
-              Sign In
-            </button>
-          </SignInButton>
-          <SignUpButton mode="modal">
-            <button className="px-4 py-1 rounded border border-black">
-              Sign Up
-            </button>
-          </SignUpButton>
-        </SignedOut>
-
-        <SignedIn>
-          <Link
-            href="/user-profile"
-            className="px-4 py-1 rounded border border-black"
-          >
-            User Profile
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex items-center gap-6 text-sm">
+          <Link href="/" className="hover:text-blue-600">
+            Home
           </Link>
-          <SignOutButton>
-            <button className="px-4 py-1 rounded border border-black">
-              Sign Out
-            </button>
-          </SignOutButton>
-        </SignedIn>
-      </div>
-
-      {/* Mobile Auth Buttons (outside toggle) */}
-      <div className="md:hidden flex items-center gap-2">
-        <SignedIn>
-          <Link
-            href="/user-profile"
-            className="text-sm px-3 py-1 rounded border border-black"
-          >
-            Profile
+          <Link href="/about" className="hover:text-blue-600">
+            About
           </Link>
-          <SignOutButton>
-            <button className="text-sm px-3 py-1 rounded border border-black">
-              Sign Out
-            </button>
-          </SignOutButton>
-        </SignedIn>
+          <Link href="/contact" className="hover:text-blue-600">
+            Contact
+          </Link>
+          <Link href="/blog" className="hover:text-blue-600">
+            Blog
+          </Link>
+          <Link href="/all" className="hover:text-blue-600">
+            All
+          </Link>
 
-        <SignedOut>
-          <SignInButton mode="modal">
-            <button className="text-sm px-3 py-1 rounded border border-black">
-              Sign In
-            </button>
-          </SignInButton>
-          <SignUpButton mode="modal">
-            <button className="text-sm px-3 py-1 rounded border border-black">
-              Sign Up
-            </button>
-          </SignUpButton>
-        </SignedOut>
+          <SignedOut>
+            <SignInButton mode="modal">
+              <button className="px-4 py-1 rounded border border-black">
+                Sign In
+              </button>
+            </SignInButton>
+            <SignUpButton mode="modal">
+              <button className="px-4 py-1 rounded border border-black">
+                Sign Up
+              </button>
+            </SignUpButton>
+          </SignedOut>
 
-        <button onClick={toggleMenu} aria-label="Menu">
-          <SlOptionsVertical size={22} />
-        </button>
-      </div>
-
-      {/* Mobile Dropdown Menu (page links only) */}
-      {isMenuOpen && (
-        <div className="absolute top-[60px] right-4 w-56 bg-white border border-gray-200 rounded-md shadow-md p-4 z-50 md:hidden">
-          <nav className="flex flex-col gap-3 text-sm">
-            <Link href="/" className="hover:text-blue-600">
-              Home
+          <SignedIn>
+            <Link
+              href="/user-profile"
+              className="px-4 py-1 rounded border border-black"
+            >
+              User Profile
             </Link>
-            <Link href="/about" className="hover:text-blue-600">
-              About
-            </Link>
-            <Link href="/contact" className="hover:text-blue-600">
-              Contact
-            </Link>
-            <Link href="/all" className="hover:text-blue-600">
-              All
-            </Link>
-          </nav>
+            <SignOutButton>
+              <button className="px-4 py-1 rounded border border-black">
+                Sign Out
+              </button>
+            </SignOutButton>
+          </SignedIn>
         </div>
-      )}
-    </nav>
+
+        {/* Mobile Auth Buttons (outside toggle) */}
+        <div className="md:hidden flex items-center gap-2">
+          <SignedIn>
+            <Link
+              href="/user-profile"
+              className="text-sm px-3 py-1 rounded border border-black"
+            >
+              Profile
+            </Link>
+            <SignOutButton>
+              <button className="text-sm px-3 py-1 rounded border border-black">
+                Sign Out
+              </button>
+            </SignOutButton>
+          </SignedIn>
+
+          <SignedOut>
+            <SignInButton mode="modal">
+              <button className="text-sm px-3 py-1 rounded border border-black">
+                Sign In
+              </button>
+            </SignInButton>
+            <SignUpButton mode="modal">
+              <button className="text-sm px-3 py-1 rounded border border-black">
+                Sign Up
+              </button>
+            </SignUpButton>
+          </SignedOut>
+
+          <button onClick={toggleMenu} aria-label="Menu">
+            <SlOptionsVertical size={22} />
+          </button>
+        </div>
+
+        {/* Mobile Dropdown Menu (page links only) */}
+        {isMenuOpen && (
+          <div className="absolute top-[60px] right-4 w-56 bg-white border border-gray-200 rounded-md shadow-md p-4 z-50 md:hidden">
+            <nav className="flex flex-col gap-3 text-sm">
+              <Link href="/" className="hover:text-blue-600">
+                Home
+              </Link>
+              <Link href="/about" className="hover:text-blue-600">
+                About
+              </Link>
+              <Link href="/contact" className="hover:text-blue-600">
+                Contact
+              </Link>
+              <Link href="/all" className="hover:text-blue-600">
+                All
+              </Link>
+            </nav>
+          </div>
+        )}
+      </nav>
+    </>
   );
 }

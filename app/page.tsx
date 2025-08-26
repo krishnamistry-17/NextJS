@@ -7,7 +7,12 @@ import SignedInBtn from "./component/sign-in-button";
 import Link from "next/link";
 import SignedOutButton from "./component/sign-out-button";
 
-export default async function Home() {
+export default async function Home({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
+}) {
+  const filters = (await searchParams).filters;
   const session = await auth();
   if (session?.user) {
     return (
