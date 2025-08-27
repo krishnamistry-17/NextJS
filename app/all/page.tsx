@@ -8,6 +8,7 @@ export default function All() {
       <Link href={"/all/ui"}>Create Post</Link>
       <Link href={"/all/pages"}>CSR</Link>
       <Link href={"/all/server"}>Server</Link>
+      <Link href={"/all/form"}>Form</Link>
       <Link href={"/all/pages"}>Rendering</Link>
     </div>
   );

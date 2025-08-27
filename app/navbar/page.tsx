@@ -11,6 +11,7 @@ import {
 } from "@clerk/nextjs";
 import { SlOptionsVertical } from "react-icons/sl";
 import { useState } from "react";
+import ThemeToggle from "../theme/page";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -51,6 +52,9 @@ export default function Navbar() {
           <Link href="/all" className="hover:text-blue-600">
             All
           </Link>
+          <div>
+            <ThemeToggle />
+          </div>
 
           <SignedOut>
             <SignInButton mode="modal">

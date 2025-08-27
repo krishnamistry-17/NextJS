@@ -9,7 +9,7 @@ export default function About() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 py-10 px-4">
+    <div className="min-h-screen bg-gray-100  py-10 px-4">
       <div className="max-w-md mx-auto bg-white shadow-md rounded-lg p-6">
         <p className="text-center text-[25px] text-black font-bold">
           About Page

@@ -1,5 +1,7 @@
 "use server";
 
+import { cookies } from "next/headers";
+
 export async function myServerAction(data: string) {
   console.log("server action recieved :", data);
   return { message: `Processed ${data}` };
@@ -8,6 +10,8 @@ export async function myServerAction(data: string) {
 async function createPost(prevState: any, formData: FormData) {
   const title = formData.get("title");
   const body = formData.get("body");
+  const cokkieStore = await cookies();
+  cokkieStore.get("user");
 
   const res = await fetch("https://jsonplaceholder.typicode.com/posts", {
     method: "POST",
@@ -17,6 +21,9 @@ async function createPost(prevState: any, formData: FormData) {
     body: JSON.stringify({ title, body }),
   });
   const json = await res.json();
+  cokkieStore.get("name");
+  cokkieStore.set("name", "user1");
+  cokkieStore.delete("name");
   if (!res.ok) {
     return { message: "Failed to create Post" };
   }

@@ -11,7 +11,7 @@ export default async function Page({ params }: PageProps) {
     `https://jsonplaceholder.typicode.com/users/${params.slug}`
   );
   const users = await response.json();
-  
+
   if (!users) {
     return (
       <div className="py-6">
@@ -21,16 +21,22 @@ export default async function Page({ params }: PageProps) {
   }
 
   return (
-    <div className="py-10">
-      <div className=" p-2">
-        <p>
-          Name: <span className="pl-1">{users.name}</span>
-        </p>
+    <div className="py-10 max-w-lg mx-auto">
+      <div className=" p-2 border border-black/20">
         <p>
           UserName: <span className="pl-1">{users.username}</span>
         </p>
         <p>
+          Name: <span className="pl-1">{users.name}</span>
+        </p>
+        <p>
           Email: <span className="pl-1">{users.email}</span>
+        </p>
+        <p>
+          City: <span className="pl-1">{users?.address?.city}</span>
+        </p>
+        <p>
+          Company: <span className="pl-1">{users?.company?.name}</span>
         </p>
       </div>
     </div>

@@ -1,7 +1,6 @@
 "use server";
 import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
 import Notes from "./notes/page";
-
 import { auth } from "@/auth";
 import SignedInBtn from "./component/sign-in-button";
 import Link from "next/link";
@@ -31,9 +30,6 @@ export default async function Home({
 
       <SignedOut>
         <div>
-          <h1 className="text-center text-black text-2xl font-bold pt-[55px]">
-            Hello,Welcome!!
-          </h1>
           <p className="text-center text-black text-2xl font-bold pt-[15px]">
             Please SignedIn First!!!
           </p>
