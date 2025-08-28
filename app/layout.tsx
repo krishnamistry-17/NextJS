@@ -22,15 +22,15 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <ClerkProvider>
-      <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-        <html lang="en">
-          {" "}
-          <body className={`${geistSans.variable} ${geistMono.variable} `}>
+      <html lang="en">
+        {" "}
+        <body className={`${geistSans.variable} ${geistMono.variable} `}>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <Navbar />
             <NotesProvider>{children}</NotesProvider>
-          </body>
-        </html>
-      </ThemeProvider>
+          </ThemeProvider>
+        </body>
+      </html>
     </ClerkProvider>
   );
 }

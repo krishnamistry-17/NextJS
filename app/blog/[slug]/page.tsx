@@ -1,5 +1,5 @@
 import NotFoundPage from "@/app/not-found";
-
+//get staticprops ->using this
 type PageProps = {
   params: {
     slug: string;
@@ -22,7 +22,7 @@ export default async function Page({ params }: PageProps) {
 
   return (
     <div className="py-10 max-w-lg mx-auto">
-      <div className=" p-2 border border-black/20">
+      <div className=" p-2 border dark:border-black/20">
         <p>
           UserName: <span className="pl-1">{users.username}</span>
         </p>

@@ -31,7 +31,7 @@ export default function Post() {
     <div className="py-10 max-w-lg mx-auto">
       {posts?.map((post: { id: number; name: string }) => {
         return (
-          <div className=" border border-black/20">
+          <div className=" border border-gray-400">
             <div
               key={post.id}
               className="p-2 flex items-center justify-between"
@@ -40,10 +40,7 @@ export default function Post() {
                 <p>{post.name}</p>
               </div>
               <div className="flex justify-end">
-                <Link
-                  href={`/blog/${post.id}`}
-                  className="text-blue-700 underline"
-                >
+                <Link href={`/blog/${post.id}`} className="underline">
                   view details
                 </Link>
               </div>

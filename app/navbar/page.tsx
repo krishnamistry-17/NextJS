@@ -12,6 +12,7 @@ import {
 import { SlOptionsVertical } from "react-icons/sl";
 import { useState } from "react";
 import ThemeToggle from "../theme/page";
+// import ThemeToggle from "../theme/page";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -21,11 +22,10 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className="w-full border-b border-gray-200 bg-white shadow-sm 
-    px-4 py-3 flex justify-between items-center relative"
+        className="w-full border-b border-gray-200  shadow-sm 
+    md:px-4 px-2 py-3 flex justify-between items-center relative"
       >
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2 bg-white p-2">
           <Image
             src="/next.svg"
             alt="Next.js logo"
@@ -35,21 +35,20 @@ export default function Navbar() {
           />
         </Link>
 
-        {/* Desktop Navigation */}
         <div className="hidden md:flex items-center gap-6 text-sm">
-          <Link href="/" className="hover:text-blue-600">
+          <Link href="/" className="">
             Home
           </Link>
-          <Link href="/about" className="hover:text-blue-600">
+          <Link href="/about" className="">
             About
           </Link>
-          <Link href="/contact" className="hover:text-blue-600">
+          <Link href="/contact" className="">
             Contact
           </Link>
-          <Link href="/blog" className="hover:text-blue-600">
+          <Link href="/blog" className="">
             Blog
           </Link>
-          <Link href="/all" className="hover:text-blue-600">
+          <Link href="/all" className="">
             All
           </Link>
           <div>
@@ -58,12 +57,12 @@ export default function Navbar() {
 
           <SignedOut>
             <SignInButton mode="modal">
-              <button className="px-4 py-1 rounded border border-black">
+              <button className="px-4 py-1 rounded border border-black ">
                 Sign In
               </button>
             </SignInButton>
             <SignUpButton mode="modal">
-              <button className="px-4 py-1 rounded border border-black">
+              <button className="px-4 py-1 rounded border border-black ">
                 Sign Up
               </button>
             </SignUpButton>
@@ -72,29 +71,25 @@ export default function Navbar() {
           <SignedIn>
             <Link
               href="/user-profile"
-              className="px-4 py-1 rounded border border-black"
+              className="px-4 py-1 rounded border border-black "
             >
               User Profile
             </Link>
             <SignOutButton>
-              <button className="px-4 py-1 rounded border border-black">
+              <button className="px-4 py-1 rounded border border-black ">
                 Sign Out
               </button>
             </SignOutButton>
           </SignedIn>
         </div>
 
-        {/* Mobile Auth Buttons (outside toggle) */}
         <div className="md:hidden flex items-center gap-2">
           <SignedIn>
-            <Link
-              href="/user-profile"
-              className="text-sm px-3 py-1 rounded border border-black"
-            >
-              Profile
-            </Link>
+            <div>
+              <ThemeToggle />
+            </div>
             <SignOutButton>
-              <button className="text-sm px-3 py-1 rounded border border-black">
+              <button className="text-sm px-3 py-1 rounded border border-black ">
                 Sign Out
               </button>
             </SignOutButton>
@@ -102,12 +97,12 @@ export default function Navbar() {
 
           <SignedOut>
             <SignInButton mode="modal">
-              <button className="text-sm px-3 py-1 rounded border border-black">
+              <button className="text-sm px-3 py-1 rounded border border-black ">
                 Sign In
               </button>
             </SignInButton>
             <SignUpButton mode="modal">
-              <button className="text-sm px-3 py-1 rounded border border-black">
+              <button className="text-sm px-3 py-1 rounded border border-black ">
                 Sign Up
               </button>
             </SignUpButton>
@@ -118,22 +113,29 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* Mobile Dropdown Menu (page links only) */}
         {isMenuOpen && (
-          <div className="absolute top-[60px] right-4 w-56 bg-white border border-gray-200 rounded-md shadow-md p-4 z-50 md:hidden">
+          <div className="absolute top-[60px] right-4 w-50 bg-white border border-gray-200 rounded-md shadow-md p-4 z-50 md:hidden">
             <nav className="flex flex-col gap-3 text-sm">
-              <Link href="/" className="hover:text-blue-600">
+              <Link href="/" className="">
                 Home
               </Link>
-              <Link href="/about" className="hover:text-blue-600">
+              <Link href="/about" className="">
                 About
               </Link>
-              <Link href="/contact" className="hover:text-blue-600">
+              <Link href="/contact" className="">
                 Contact
               </Link>
-              <Link href="/all" className="hover:text-blue-600">
+              <Link href="/blog" className="">
+                Blog
+              </Link>
+              <Link href="/all" className="">
                 All
               </Link>
+              <SignedIn>
+                <Link href="/user-profile" className=" ">
+                  Profile
+                </Link>
+              </SignedIn>
             </nav>
           </div>
         )}

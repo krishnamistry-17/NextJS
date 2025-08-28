@@ -76,24 +76,23 @@ export default function Notes() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 py-10 px-4">
-      <div className="lg:max-w-4xl max-w-3xl mx-auto bg-white shadow-md rounded-lg p-6 overflow-x-auto">
-        <h1 className="text-xl font-semibold mb-4 text-center">User Notes</h1>
+    <div className="min-h-screen  py-10 px-4">
+      <div
+        className="lg:max-w-4xl max-w-3xl mx-auto   rounded-lg p-6 overflow-x-auto"
+        style={{ scrollbarWidth: "none" }}
+      >
+        <h1 className="text-xl font-semibold mb-4 text-center text-black">
+          User Notes
+        </h1>
         <table className="w-full table-auto border border-gray-300">
-          <thead className="bg-gray-200">
+          <thead className="">
             <tr>
-              <th className="text-sm font-medium text-gray-700 px-4 py-2 border">
-                ID
-              </th>
-              <th className="text-sm font-medium text-gray-700 px-4 py-2 border">
-                Name
-              </th>
-              <th className="text-sm font-medium text-gray-700 px-4 py-2 border">
+              <th className="text-sm font-medium  px-4 py-2 border">ID</th>
+              <th className="text-sm font-medium  px-4 py-2 border">Name</th>
+              <th className="text-sm font-medium  px-4 py-2 border">
                 Username
               </th>
-              <th className="text-sm font-medium text-gray-700 px-4 py-2 border">
-                Email
-              </th>
+              <th className="text-sm font-medium  px-4 py-2 border">Email</th>
               <th className="border">
                 <div className="flex justify-center gap-2">
                   <button
@@ -107,7 +106,9 @@ export default function Notes() {
                     placeholder="Search Name"
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
-                    className="border border-black p-[5px] font-medium text-[16px] my-1 rounded-sm max-w-[135px]"
+                    className="border border-black p-[5px] font-medium text-[16px] my-1 rounded-sm max-w-[135px]
+                    focus:outline-none focus:ring-0 
+                    "
                   />
                   <span>
                     {isDownloadComplete ? (
@@ -147,20 +148,20 @@ export default function Notes() {
           </thead>
           <tbody>
             {searchResult.map((note) => (
-              <tr key={note.id} className="hover:bg-gray-50">
-                <td className="text-sm px-4 py-2 border text-center">
+              <tr key={note.id} className="">
+                <td className="text-sm px-4 py-2 border text-center ">
                   {note.id}
                 </td>
-                <td className="text-sm px-4 py-2 border text-center">
+                <td className="text-sm px-4 py-2 border text-center ">
                   {note.name}
                 </td>
-                <td className="text-sm px-4 py-2 border text-center">
+                <td className="text-sm px-4 py-2 border text-center ">
                   {note.username}
                 </td>
-                <td className="text-sm px-4 py-2 border text-center">
+                <td className="text-sm px-4 py-2 border text-center ">
                   {note.email}
                 </td>
-                <td className="text-sm px-4 py-2 border text-center">
+                <td className="text-sm px-4 py-2 border text-center ">
                   <div className="flex justify-center gap-2">
                     <button
                       onClick={() => handleEdit(note.id)}

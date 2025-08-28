@@ -11,7 +11,7 @@ export default function Contact() {
   });
 
   return (
-    <div className="bg-gray-100 min-h-screen py-10 px-4">
+    <div className="min-h-screen py-10 px-4">
       <div className="max-w-md mx-auto bg-white shadow-md rounded-lg p-6">
         <p className="text-center text-[25px] font-bold text-black">
           Contact Detail
@@ -25,7 +25,7 @@ export default function Contact() {
               onChange={(e) =>
                 setFormData({ ...formData, fname: e.target.value })
               }
-              className="border border-black p-[10px] max-w-[250px] rounded-sm"
+              className="border border-black p-[10px] max-w-[250px] rounded-sm text-gray-700"
             />
             <input
               type="text"
@@ -34,7 +34,7 @@ export default function Contact() {
               onChange={(e) =>
                 setFormData({ ...formData, lname: e.target.value })
               }
-              className="border border-black p-[10px] max-w-[250px] rounded-sm"
+              className="border border-black p-[10px] max-w-[250px] rounded-sm text-gray-700"
             />
             <input
               type="email"
@@ -43,13 +43,13 @@ export default function Contact() {
               onChange={(e) =>
                 setFormData({ ...formData, email: e.target.value })
               }
-              className="border border-black p-[10px] max-w-[250px] rounded-sm"
+              className="border border-black p-[10px] max-w-[250px] rounded-sm text-gray-700"
             />
             <textarea
               name=""
               placeholder="Enter query
             "
-              className="border border-black p-[10px] rounded-sm"
+              className="border border-black p-[10px] rounded-sm text-gray-700"
             ></textarea>
             <button
               className="bg-blue-500 hover:bg-blue-700 px-4 py-3 rounded text-white"

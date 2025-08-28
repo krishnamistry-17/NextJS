@@ -1,36 +1,24 @@
 "use client";
 
-import { useLayoutEffect, useState } from "react";
-
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 export default function ThemeToggle() {
-  const [isDark, setIsDark] = useState(false);
+  const [mount, setMount] = useState(false);
+  const { systemTheme, theme, setTheme } = useTheme();
+  const currentTheme = theme === "system" ? systemTheme : theme;
 
-  useLayoutEffect(() => {
-    const root = document.documentElement;
-    const savedTheme = localStorage.getItem("theme");
-    const systemPrefersDark = window.matchMedia(
-      "(prefers-color-scheme: dark)"
-    ).matches;
-
-    const shouldUseDark =
-      savedTheme === "dark" || (!savedTheme && systemPrefersDark);
-
-    root.classList.toggle("dark", shouldUseDark);
-    setIsDark(shouldUseDark);
+  useEffect(() => {
+    setMount(true);
   }, []);
-
-  const toggleTheme = () => {
-    const root = document.documentElement;
-    const newTheme = isDark ? "light" : "dark";
-
-    localStorage.setItem("theme", newTheme);
-    root.classList.toggle("dark", newTheme === "dark");
-    setIsDark(newTheme === "dark");
-  };
+  console.log("theme", currentTheme);
 
   return (
-    <button onClick={toggleTheme} className="px-4 py-2">
-      {!isDark ? "☀️" : "🌙"}
+    <button
+      onClick={() => setTheme(currentTheme === "dark" ? "light" : "dark")}
+      type="button"
+      className="px-4 py-2 focus:outline-none ring-0"
+    >
+      {currentTheme === "dark" ? "☀️" : "🌙"}
     </button>
   );
 }
